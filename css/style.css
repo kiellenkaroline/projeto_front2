@@ -16,6 +16,26 @@
 
 /* all */
 
+h1{
+    position: relative;
+    text-align: center;
+    top: 50px;
+    color: #1bb4e8;
+    margin: 0 0 10px 20px;
+    
+}
+#formLogin {
+    position: relative;
+    top: 50px;
+    background-color: #1bb4e8;
+}
+
+button {
+    position: relative;
+    margin-top: 30px;
+    background-color: #c6b07f;
+}
+
 * {
     margin: 0;
     padding: 0;
