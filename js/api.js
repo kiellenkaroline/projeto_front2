@@ -5,7 +5,7 @@ function obterMensagens() {
       url: 'https://app-uniesp-p2-b8d2992ac568.herokuapp.com/mensagens',
       method: 'GET',
       dataType: 'json',
-      async: true
+      async: false
     }).done(function(data) {
       retorno = data;
     }).fail(function(erro) {
@@ -32,25 +32,55 @@ function obterMensagens() {
     });
   }
   
-  function validarUsuario(objLoginSenha) {
-    $.ajax({
-      url: 'https://app-uniesp-p2-b8d2992ac568.herokuapp.com/usuarios/validar',
-      method: 'POST',
-      dataType: 'json',
-      async: true,
-      headers: {
-        'Access-Control-Allow-Origin': '*'
-      },
-      contentType: 'application/json',
-      data: JSON.stringify(objLoginSenha)
-    }).done(function(data) {
-      retorno = data;
-    }).fail(function(erro) {
-      console.error("Erro ao validar usuário:", erro);
-    });
+  function validarUsuario() {
+
+    var objLoginSenha = {
+        email: $("#email").val(), 
+        senha: $("#password").val()} 
+
+        var retorno = false;
+
+        var validacao = $.ajax({
+            url: 'https://app-uniesp-p2-b8d2992ac568.herokuapp.com/usuarios/validar',
+            method: 'POST',
+            dataType: 'json',
+            async: false,
+            headers: {
+                'Access-Control-Allow-Origin': '*'
+                    },
+            contentType: 'application/json',
+            data: JSON.stringify(objLoginSenha)
+        }).fail(function(){
+            return retorno;
+        });
+    
+        validacao.done(function(data) {
+            retorno = data;
+        });
+        
+        if (retorno){
+            window.location.href="mensagem.html"
+        } else {
+            alert("Login ou senha incorreta.")
+        }
+
+        return retorno;
+    }
   
-    return retorno;
-  }
+    function listarMensagens(){
+        var mensagens = obterMensagens();
+        var tabela = $('#messages-table');
+      
+        $.each(mensagens, function(index, mensagem){
+          var linha = '<tr>' +
+            '<td>' + mensagem.nome + '</td>' +
+            '<td>' + mensagem.email + '</td>' +
+            '<td>' + mensagem.mensagem + '</td>' +
+            '</tr>';
+          tabela.append(linha);
+        });
+      }
+      
   
   document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('send-button').addEventListener('click', function(event) {
@@ -67,4 +97,6 @@ function obterMensagens() {
       }
     });
   });
+
+  
   
