@@ -2,7 +2,7 @@
 
 ## 👨🏼‍💻 Membros desevolvedores do projeto:
 
-- André Moreira, Kellyanne Karen, Kiellen Karoline e Layse Bruna. 
+- André Moreira, Caio Felipe, Kellyanne Karen, Kiellen Karoline, Layse Bruna, Tomaz Panta. 
 
 
 ## Linguagem e tecnologia utilizada:
